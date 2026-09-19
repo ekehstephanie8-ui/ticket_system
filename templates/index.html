@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IT Support Ticket System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>IT Support Tickets</h1>
+    <a href="{{ url_for('create') }}">+ Create New Ticket</a>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket['id'] }}</td>
+            <td>{{ ticket['user_name'] }}</td>
+            <td>{{ ticket['title'] }}</td>
+            <td>{{ ticket['category'] }}</td>
+            <td>{{ ticket['priority'] }}</td>
+            <td>{{ ticket['status'] }}</td>
+            <td>{{ ticket['date_created'] }}</td>
+            <td>
+                <a href="{{ url_for('update', ticket_id=ticket['id']) }}">Update</a>
+                |
+                <a href="{{ url_for('delete', ticket_id=ticket['id']) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
