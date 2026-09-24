@@ -12,7 +12,7 @@ def get_db_connection():
 @app.route("/")
 def index():
     connection = get_db_connection()
-    tickets = connection.execute("SELECT * FROM tickets ORDER BY id DESC").fetchall()
+    tickets = connection.execute("SELECT * FROM tickets ORDER BY id ASC").fetchall()
     connection.close()
     return render_template("index.html", tickets=tickets)
 
